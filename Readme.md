@@ -30,7 +30,7 @@ Please send in a pull request.
 
 ## Authors
 
-{{cookiecutter.full_name}} - Initial work ({{cookiecutter.year}})
+Sankha S. Mukherjee - Initial work (2017)
 
 ## License
 

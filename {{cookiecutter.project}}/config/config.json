@@ -1,0 +1,6 @@
+{
+    "logging":{
+        "logFolder":"logs",
+        "logBase":"{{cookiecutter.project}}"
+    }
+}

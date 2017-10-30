@@ -22,5 +22,5 @@ config/db.json
 # Remember to keep the decorators
 src/logs/*.log
 
-# Dont save results (might be a lot of stuff)
-results/*
+# # Dont save results (might be a lot of stuff)
+# results/*

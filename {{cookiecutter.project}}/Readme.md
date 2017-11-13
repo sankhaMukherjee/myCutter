@@ -22,9 +22,8 @@ The folloiwing installations are for *nix-like systems. These have been tried on
     2.4. generate an initial git repository
 3. change to the `src` folder
 4. run the command `make run`. This should run the small test program
-5. Generate your documentation folder by running `make docInit`. Follow instructions to prepare the system for autodoc installation that cannot be done automatically.
-6. run the command `make doc` to build the documentation.
-7. Check whether all the tests pass with the command `make test`. This uses py.test for running tests. 
+5. Generate your documentation folder by running `make doc`. 
+6. Check whether all the tests pass with the command `make test`. This uses py.test for running tests. 
 
 ## Deployment
 

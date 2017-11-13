@@ -29,31 +29,33 @@ checkTime:
 test:
 	python3 -m pytest ../tests
 
-docInit:
+doc:
 	@echo 'Generating a fresh copy of the docs ...'
 	@rm -rf ../docs
 	@mkdir ../docs
 	@sphinx-apidoc -F -o ../docs .
-	@echo '+------------------------------------------------------------+'
-	@echo '|Do the folliowing to generate docs:                         |'
-	@echo '+------------------------------------------------------------+'
-	@echo '|1. make sure to insert the system path in the right folder  |'
-	@echo '|2. add the `sphinx.ext.napoleon` extention                  |'
-	@echo '|3. Add the specs for the napoleon extension:                |'
-	@echo '     napoleon_google_docstring = True                         '
-	@echo '     napoleon_numpy_docstring = True                          '
-	@echo '     napoleon_include_init_with_doc = False                   '
-	@echo '     napoleon_include_private_with_doc = False                '
-	@echo '     napoleon_include_special_with_doc = True                 '
-	@echo '     napoleon_use_admonition_for_examples = False             '
-	@echo '     napoleon_use_admonition_for_notes = False                '
-	@echo '     napoleon_use_admonition_for_references = False           '
-	@echo '     napoleon_use_ivar = False                                '
-	@echo '     napoleon_use_param = True                                '
-	@echo '     napoleon_use_rtype = True                                '
-	@echo '|4. build the documentation with the `make doc`      command |'
-	@echo '+------------------------------------------------------------+'
-
-doc:
+	@sed "s/^extensions.*/& 'sphinx.ext.napoleon',/"        ../docs/conf.py   > ../docs/conf2.py
+	@sed "s/^# import/import/"                              ../docs/conf2.py  > ../docs/conf3.py
+	@sed "s/^# sys.path./sys.path./"                        ../docs/conf3.py  > ../docs/conf4.py
+	@echo '# napoleon extensions over here '                >> ../docs/conf1.py
+	@echo '# ------------------------------'                >> ../docs/conf1.py
+	@echo 'napoleon_google_docstring = True'                >> ../docs/conf1.py
+	@echo 'napoleon_numpy_docstring = True'                 >> ../docs/conf1.py
+	@echo 'napoleon_include_init_with_doc = False'          >> ../docs/conf1.py
+	@echo 'napoleon_include_private_with_doc = False'       >> ../docs/conf1.py
+	@echo 'napoleon_include_special_with_doc = True'        >> ../docs/conf1.py
+	@echo 'napoleon_use_admonition_for_examples = False'    >> ../docs/conf1.py
+	@echo 'napoleon_use_admonition_for_notes = False'       >> ../docs/conf1.py
+	@echo 'napoleon_use_admonition_for_references = False'  >> ../docs/conf1.py
+	@echo 'napoleon_use_ivar = False'                       >> ../docs/conf1.py
+	@echo 'napoleon_use_param = True'                       >> ../docs/conf1.py
+	@echo 'napoleon_use_rtype = True'                       >> ../docs/conf1.py
+	@echo ''                                                >> ../docs/conf1.py
+	@echo ''                                                >> ../docs/conf1.py
+	@cat ../docs/conf4.py ../docs/conf1.py > ../docs/conf5.py
+	@rm ../docs/conf.py ../docs/conf1.py ../docs/conf2.py ../docs/conf3.py ../docs/conf4.py
+	@mv ../docs/conf5.py ../docs/conf.py
+	@echo 'Generating the doc tree ....'
+	@echo '----------------------------'
 	sphinx-build -b html -aE -d ../docs/doctrees -c ../docs ../docs ../docs/_build/html
 

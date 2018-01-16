@@ -38,7 +38,12 @@ else
     pip3 install numpy
     pip3 install scipy
     pip3 install pandas
+
+    # ML libraries
     pip3 install sklearn
+    pip3 install tensorflow
+    pip3 install --upgrade tensorflow
+    pip3 install --upgrade keras
 
     # database stuff
     pip3 install psycopg2

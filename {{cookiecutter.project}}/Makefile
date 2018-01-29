@@ -9,12 +9,12 @@ firstRun:
 
 	# Create the virtual environment
 	# --------------------------------------
-	@bin/vEnv.sh
+	bin/vEnv.sh
 
 	# generate the first commit
 	# --------------------------------------
 	git init
-	git add *
+	git add *; true
 	git remote add origin {{cookiecutter.remote}}
 	git commit -m 'This is the first commit'
 	# Geenerate the master branch

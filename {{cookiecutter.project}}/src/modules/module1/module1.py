@@ -2,7 +2,7 @@ from logs import logDecorator as lD
 import json
 
 config = json.load(open('../config/config.json'))
-logBase = config['logging']['logBase'] + '.module1'
+logBase = config['logging']['logBase'] + '.modules.module1.module1'
 
 
 @lD.log(logBase + '.doSomething')
@@ -17,7 +17,7 @@ def doSomething(logger):
         [description]
     '''
 
-    print('This just prints this line')
+    print('We are in module 1')
 
     return
 

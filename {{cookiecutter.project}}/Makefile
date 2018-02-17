@@ -13,15 +13,5 @@ firstRun:
 
 	# generate the first commit
 	# --------------------------------------
-	git init
-	git add *; true
-	git remote add origin {{cookiecutter.remote}}
-	git commit -m 'This is the first commit'
-	# Geenerate the master branch
-	# ......................................
-	git push origin master
-	# Geenerate the rest of the branches
-	# ......................................
-	git checkout -b dev
-	git push origin dev
+	bin/makeGit.sh
 

@@ -17,11 +17,12 @@ if [ -e '.git' ]; then
     echo "| other branches that you have not downloaded into this folder. Pull  |"
     echo "| whichever branch that you think is more important at any time.      |"
     echo "+---------------------------------------------------------------------+"
+    echo "$(git pull)"
 
 else
 
     git init
-    git add *; true
+    git add .; true
     git remote add origin {{cookiecutter.remote}}
     git commit -m 'This is the first commit'
     # Geenerate the master branch

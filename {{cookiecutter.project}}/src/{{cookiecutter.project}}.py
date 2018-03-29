@@ -1,6 +1,7 @@
 from logs import logDecorator as lD
 from lib import simpleLib as sL
 import json, importlib
+from importlib import util
 
 config = json.load(open('../config/config.json'))
 logBase = config['logging']['logBase']
@@ -34,9 +35,9 @@ def importModules(logger):
             name, path = m['moduleName'], m['path']
             logger.info('Module {} is being executed'.format( name ))
 
-            module_spec = importlib.util.spec_from_file_location(
+            module_spec = util.spec_from_file_location(
                 name, path)
-            module = importlib.util.module_from_spec(module_spec)
+            module = util.module_from_spec(module_spec)
             module_spec.loader.exec_module(module)
             module.main()
         except Exception as e:

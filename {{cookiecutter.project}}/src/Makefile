@@ -1,5 +1,3 @@
-
-
 grantPermissions:
 	chmod 766 ../bin/*
 
@@ -29,6 +27,18 @@ checkTime:
 test:
 	python3 -m pytest ../tests
 
+define string_to_insert
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
+if on_rtd:
+	html_theme = 'default'
+else:  # only import and set the theme if we're building docs locally
+	import sphinx_rtd_theme
+	html_theme = 'sphinx_rtd_theme'
+	html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+endef
+export string_to_insert
+
 doc:
 	@echo 'Generating a fresh copy of the docs ...'
 	@rm -rf ../docs
@@ -37,6 +47,7 @@ doc:
 	@sed "s/^extensions.*/& 'sphinx.ext.napoleon',/"        ../docs/conf.py   > ../docs/conf2.py
 	@sed "s/^# import/import/"                              ../docs/conf2.py  > ../docs/conf3.py
 	@sed "s/^# sys.path./sys.path./"                        ../docs/conf3.py  > ../docs/conf4.py
+	@sed "s|^html_theme =|#html_theme =|"  					../docs/conf4.py  > ../docs/conf5.py
 	@echo '# napoleon extensions over here '                >> ../docs/conf1.py
 	@echo '# ------------------------------'                >> ../docs/conf1.py
 	@echo 'napoleon_google_docstring = True'                >> ../docs/conf1.py
@@ -52,9 +63,10 @@ doc:
 	@echo 'napoleon_use_rtype = True'                       >> ../docs/conf1.py
 	@echo ''                                                >> ../docs/conf1.py
 	@echo ''                                                >> ../docs/conf1.py
-	@cat ../docs/conf4.py ../docs/conf1.py > ../docs/conf5.py
-	@rm ../docs/conf.py ../docs/conf1.py ../docs/conf2.py ../docs/conf3.py ../docs/conf4.py
-	@mv ../docs/conf5.py ../docs/conf.py
+	@echo "$$string_to_insert" 								>> ../docs/conf1.py
+	@cat ../docs/conf5.py ../docs/conf1.py > ../docs/conf6.py
+	@rm ../docs/conf.py ../docs/conf1.py ../docs/conf2.py ../docs/conf3.py ../docs/conf4.py ../docs/conf5.py
+	@mv ../docs/conf6.py ../docs/conf.py
 	@echo 'Generating the doc tree ....'
 	@echo '----------------------------'
 	sphinx-build -b html -aE -d ../docs/doctrees -c ../docs ../docs ../docs/_build/html

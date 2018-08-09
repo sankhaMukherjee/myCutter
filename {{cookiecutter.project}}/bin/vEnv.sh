@@ -29,6 +29,7 @@ else
     pip3 install pytest
     pip3 install pytest-cov
     pip3 install sphinx
+    pip3 install sphinx_rtd_theme
 
     # Utilities
     pip3 install ipython

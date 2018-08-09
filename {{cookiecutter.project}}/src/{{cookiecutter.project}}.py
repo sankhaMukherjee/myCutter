@@ -3,8 +3,10 @@ from lib import simpleLib as sL
 import json, importlib
 from importlib import util
 
-config = json.load(open('../config/config.json'))
-logBase = config['logging']['logBase']
+config   = json.load(open('../config/config.json'))
+logBase  = config['logging']['logBase']
+logLevel = config['logging']['level']
+logSpecs = config['logging']['specs']
 
 @lD.log(logBase + '.importModules')
 def importModules(logger):
@@ -45,7 +47,7 @@ def importModules(logger):
 
     return
 
-@lD.logInit(logBase, config['logging']['logFolder'])
+@lD.logInit(logBase, logLevel, logSpecs)
 def main(logger):
     '''main program
     

@@ -1,6 +1,6 @@
 from datetime import datetime as dt
 from time import time
-import json, logging
+import json, logging, sys
 from functools import wraps
 
 class log(object):
@@ -57,26 +57,39 @@ class logInit(object):
     statistics for the last run. 
     '''
 
-    def __init__(self, base, folder='logs'):
+    def __init__(self, base, level, specs):
         '''Initialize the logger object for the program
         
-        This logger object generates a new logger object, instantaniates
-        a new file object with the current date and time in the filename
-        and creates a associates the logger object to the current file. 
+        This logger object generates a new logger object. This is able to handle
+        significantly improved logging capabilities in comparison to earlier 
+        versions of the cutter. For details of the available functionality, check
+        the logging documentation. 
         
         Parameters
         ----------
         base : {str}
-            base name of the decorator. This is typically the name of the
-            module that is being generated. However, this can really be 
-            anything. 
-        folder : {str}, optional
-            The folder where the log files are to be kept. (the default is 
-            'logs', within the 'src' folder. It is advisable not to change
-            this unless absolutely necessary.)
+            name that starts the logging functionality
+        level : {str}
+            One of the different types if logs available - ``CRITICAL``, ``ERROR``, 
+            ``WARNING``, ``INFO`` and ``DEBUG``. These wil be mapped to one of the 
+            correct warning levels with the logging facility. In case there is an 
+            input that is not one shown here, it will be automatically be mapped to
+            ``INFO``.
+        specs : {dict}
+            Dictionary specifying the different types if formatters to be generated
+            while working with logs. 
         '''
         self.base   = base
-        self.folder = folder
+        self.specs  = specs
+        levels = {   
+            'CRITICAL': logging.CRITICAL,
+            'ERROR'   : logging.ERROR,
+            'WARNING' : logging.WARNING,
+            'INFO'    : logging.INFO,
+            'DEBUG'   : logging.DEBUG}
+
+        self.logLevel = levels.get(level, logging.INFO)
+
         return
 
     def __call__(self, f):
@@ -85,15 +98,28 @@ class logInit(object):
         # Function to return
         @wraps(f)
         def wrappedF(*args, **kwargs):
+
+            # Generate a logger ...
             logger    = logging.getLogger(self.base)
             formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-            fH        = logging.FileHandler(               \
-                self.folder  +  '/'                      + \
-                dt.now().strftime('%Y-%m-%d_%H-%M-%S')   + \
-                '.log')
-            fH.setFormatter(formatter)
-            logger.addHandler(fH)
-            logger.setLevel(logging.INFO)
+
+            # Generate a file handler if necessary
+            if ('file' in self.specs) and self.specs['file']['todo']:
+                fH  = logging.FileHandler(                         \
+                        specs['file']['logFolder']  +  '/'       + \
+                        dt.now().strftime('%Y-%m-%d_%H-%M-%S')   + \
+                        '.log')
+                fH.setFormatter(formatter)
+                logger.addHandler(fH)
+
+            # Generate a file handler if necessary
+            if ('stdout' in self.specs) and self.specs['stdout']['todo']:
+                cH = logging.StreamHandler(sys.stdout)
+                cH.setFormatter(formatter)
+                logger.addHandler(cH)
+
+            # set the level of the handler
+            logger.setLevel(self.logLevel)
 
             logger.info('Starting the main program ...')
             t0     = time()

@@ -1,6 +1,18 @@
 {
     "logging":{
-        "logFolder":"logs",
-        "logBase":"{{cookiecutter.project}}"
+        
+        "logBase" : "{{cookiecutter.project}}",
+        "level"   : "INFO",
+        "specs"   : {
+
+            "file":{
+                "todo"     : true,
+                "logFolder": "logs" 
+            },
+
+            "stdout":{
+                "todo"     : false 
+            }
+        }
     }
 }

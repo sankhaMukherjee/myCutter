@@ -31,6 +31,9 @@ else
     pip3 install sphinx
     pip3 install sphinx_rtd_theme
 
+    # Logging into logstash
+    pip3 install python-logstash
+    
     # Utilities
     pip3 install ipython
     pip3 install tqdm

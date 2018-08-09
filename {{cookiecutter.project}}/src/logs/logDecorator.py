@@ -94,7 +94,6 @@ class logInit(object):
 
     def __call__(self, f):
 
-
         # Function to return
         @wraps(f)
         def wrappedF(*args, **kwargs):
@@ -117,6 +116,14 @@ class logInit(object):
                 cH = logging.StreamHandler(sys.stdout)
                 cH.setFormatter(formatter)
                 logger.addHandler(cH)
+
+            # Generate a file handler if necessary
+            if ('logstash' in self.specs) and self.specs['logstash']['todo']:
+                lH = logstash.LogstashHandler(
+                    host    = self.specs['logstash']['host'], 
+                    port    = self.specs['logstash']['port'], 
+                    version = self.specs['logstash']['version'])
+                logger.addHandler(lH)
 
             # set the level of the handler
             logger.setLevel(self.logLevel)

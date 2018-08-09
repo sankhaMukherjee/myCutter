@@ -4,7 +4,8 @@
 python3 {{cookiecutter.project}}.py
 
 # --- Check to see if there was an error
-logFile=$(ls logs/*.log | sort | tail -n1)
+#  make sure we redirect of the error message
+logFile=$(ls logs/*.log 2> /dev/null | sort | tail -n1)
 
 SHOW_ALL_LOG="no"
 SHOW_TIME="no"
@@ -30,8 +31,12 @@ then
     cat $logFile | grep 'seconds'
 fi
 
-# Print the errors
-echo "Errors:"
-cat $logFile | grep 'ERROR'
+
+# Print the errors in the log files ...
+if [ -f "$logFile" ]; then
+    # Print the errors
+    echo "Errors:"
+    cat $logFile | grep 'ERROR'
+fi
 
 exit 0 # Prevent an error call in the Makefile

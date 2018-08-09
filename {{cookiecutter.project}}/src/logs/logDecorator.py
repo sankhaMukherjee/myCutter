@@ -106,7 +106,7 @@ class logInit(object):
             # Generate a file handler if necessary
             if ('file' in self.specs) and self.specs['file']['todo']:
                 fH  = logging.FileHandler(                         \
-                        specs['file']['logFolder']  +  '/'       + \
+                        self.specs['file']['logFolder']  +  '/'  + \
                         dt.now().strftime('%Y-%m-%d_%H-%M-%S')   + \
                         '.log')
                 fH.setFormatter(formatter)

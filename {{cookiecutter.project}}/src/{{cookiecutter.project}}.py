@@ -1,6 +1,6 @@
 from logs import logDecorator as lD
-from lib import simpleLib as sL
-import json, importlib
+from lib.testLib import simpleLib as sL
+import json
 from importlib import util
 
 config   = json.load(open('../config/config.json'))

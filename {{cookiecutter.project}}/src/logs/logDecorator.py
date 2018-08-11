@@ -2,6 +2,7 @@ from datetime import datetime as dt
 from time import time
 import json, logging, sys
 from functools import wraps
+import logstash
 
 class log(object):
     '''decorator for logging values
@@ -119,7 +120,7 @@ class logInit(object):
 
             # Generate a file handler if necessary
             if ('logstash' in self.specs) and self.specs['logstash']['todo']:
-                lH = logstash.LogstashHandler(
+                lH = logstash.TCPLogstashHandler(
                     host    = self.specs['logstash']['host'], 
                     port    = self.specs['logstash']['port'], 
                     version = self.specs['logstash']['version'])

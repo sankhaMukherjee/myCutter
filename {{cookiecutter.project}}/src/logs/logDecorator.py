@@ -102,13 +102,13 @@ class logInit(object):
             # Generate a logger ...
             logger    = logging.getLogger(self.base)
             formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            now       = dt.now().strftime('%Y-%m-%d_%H-%M-%S')
 
             # Generate a file handler if necessary
             if ('file' in self.specs) and self.specs['file']['todo']:
-                fH  = logging.FileHandler(                         \
-                        self.specs['file']['logFolder']  +  '/'  + \
-                        dt.now().strftime('%Y-%m-%d_%H-%M-%S')   + \
-                        '.log')
+                fH  = logging.FileHandler( '{}/{}.log'.format(
+                    self.specs['file']['logFolder'], now) )
+                
                 fH.setFormatter(formatter)
                 logger.addHandler(fH)
 

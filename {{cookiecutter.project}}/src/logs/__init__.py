@@ -113,7 +113,7 @@ along with the port. An example output is shown:
        "@version" => "1",
            "host" => "Sankha-desktop.local",
            "path" => "/Users/user/Documents/programming/python/test/mytests/mnop/src/lib/testLib/simpleLib.py",
-        "message" => "Unable to add the two values [3] and [a]:\nunsupported operand type(s) for +: 'int' and 'str'",
+        "message" => "Unable to add the two values [3] and [a]:\\nunsupported operand type(s) for +: 'int' and 'str'",
            "tags" => [],
     "logger_name" => "mnop.lib.simpleLib.simpleTestFunction",
      "stack_info" => nil

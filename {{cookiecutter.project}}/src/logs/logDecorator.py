@@ -120,10 +120,19 @@ class logInit(object):
 
             # Generate a file handler if necessary
             if ('logstash' in self.specs) and self.specs['logstash']['todo']:
+
+                tags = [ '{{cookiecutter.project}}' , now]
+
+                if 'tags' in self.specs['logstash']:
+                    tags += self.specs['logstash']['tags']
+                
+
                 lH = logstash.TCPLogstashHandler(
                     host    = self.specs['logstash']['host'], 
                     port    = self.specs['logstash']['port'], 
-                    version = self.specs['logstash']['version'])
+                    version = self.specs['logstash']['version'],
+                    tags    = tags)
+                
                 logger.addHandler(lH)
 
             # set the level of the handler

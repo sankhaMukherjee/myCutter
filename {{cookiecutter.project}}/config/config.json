@@ -18,7 +18,8 @@
                 "todo"     : false,
                 "version"  : 1,
                 "port"     : 5959,
-                "host"     : "localhost"
+                "host"     : "localhost",
+                "tags"     : []
             }
 
         }

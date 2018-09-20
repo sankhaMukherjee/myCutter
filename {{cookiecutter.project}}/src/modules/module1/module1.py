@@ -13,8 +13,8 @@ def doSomething(logger):
     
     Parameters
     ----------
-    logger : {[type]}
-        [description]
+    logger : {logging.Logger}
+        The logger used for logging error information
     '''
 
     print('We are in module 1')
@@ -32,7 +32,7 @@ def main(logger):
     Parameters
     ----------
     logger : {logging.Logger}
-        The logger function
+        The logger used for logging error information
     '''
 
     doSomething()

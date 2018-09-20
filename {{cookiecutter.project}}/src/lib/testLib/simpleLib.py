@@ -2,7 +2,7 @@ from logs import logDecorator as lD
 import json
 
 config = json.load(open('../config/config.json'))
-logBase = config['logging']['logBase'] + '.lib.simpleLib'
+logBase = config['logging']['logBase'] + '.lib.testLib.simpleLib'
 
 @lD.log(logBase + '.simpleTestFunction')
 def simpleTestFunction(logger, a, b):

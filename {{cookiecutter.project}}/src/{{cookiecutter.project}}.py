@@ -1,7 +1,9 @@
-from logs import logDecorator as lD
-from lib.testLib import simpleLib as sL
-import json
-from importlib import util
+import json, argparse
+
+from importlib      import util
+from logs           import logDecorator  as lD
+from lib.testLib    import simpleLib     as sL
+from lib.argParsers import addAllParsers as aP
 
 config   = json.load(open('../config/config.json'))
 logBase  = config['logging']['logBase']
@@ -54,6 +56,10 @@ def main(logger):
     This is the place where the entire program is going
     to be generated.
     '''
+
+    # Let us add an argument parser here
+    parser = argparse.ArgumentParser(description='{{cookiecutter.project}} command line arguments')
+    results = parser.parse_args()
 
     # First import all the modules, and run 
     # them

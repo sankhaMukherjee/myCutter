@@ -55,7 +55,8 @@ def addConfigParsers(logger, parser):
 
     return parser
 
-def parseArguments(logger, args):
+@lD.log(logBase + '.decodeParser')
+def decodeParser(logger, args):
     '''generate a dictionary from the parsed args
     
     The parsed args may/may not be present. When they are
@@ -77,4 +78,57 @@ def parseArguments(logger, args):
         meaningful
     '''
 
-    return value
+
+    values = {}
+    
+    try:
+        if args.logging_level is not None:
+            values['level'] = args.logging_level
+    except Exception as e:
+        logger.error('Unable to decode the argument logging_level :{}'.format(
+            e))
+    try:
+        if args.logging_specs_file_todo is not None:
+            values['specs']['file']['todo'] = args.logging_specs_file_todo
+    except Exception as e:
+        logger.error('Unable to decode the argument logging_specs_file_todo :{}'.format(
+            e))
+    try:
+        if args.logging_specs_file_logFolder is not None:
+            values['specs']['file']['logFolder'] = args.logging_specs_file_logFolder
+    except Exception as e:
+        logger.error('Unable to decode the argument logging_specs_file_logFolder :{}'.format(
+            e))
+    try:
+        if args.logging_specs_stdout_todo is not None:
+            values['specs']['stdout']['todo'] = args.logging_specs_stdout_todo
+    except Exception as e:
+        logger.error('Unable to decode the argument logging_specs_stdout_todo :{}'.format(
+            e))
+    try:
+        if args.logging_specs_logstash_todo is not None:
+            values['specs']['logstash']['todo'] = args.logging_specs_logstash_todo
+    except Exception as e:
+        logger.error('Unable to decode the argument logging_specs_logstash_todo :{}'.format(
+            e))
+    try:
+        if args.logging_specs_logstash_version is not None:
+            values['specs']['logstash']['version'] = args.logging_specs_logstash_version
+    except Exception as e:
+        logger.error('Unable to decode the argument logging_specs_logstash_version :{}'.format(
+            e))
+    try:
+        if args.logging_specs_logstash_port is not None:
+            values['specs']['logstash']['port'] = args.logging_specs_logstash_port
+    except Exception as e:
+        logger.error('Unable to decode the argument logging_specs_logstash_port :{}'.format(
+            e))
+    try:
+        if args.logging_specs_logstash_host is not None:
+            values['specs']['logstash']['host'] = args.logging_specs_logstash_host
+    except Exception as e:
+        logger.error('Unable to decode the argument logging_specs_logstash_host :{}'.format(
+            e))
+    
+    return values
+

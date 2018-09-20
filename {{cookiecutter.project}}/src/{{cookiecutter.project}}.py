@@ -59,7 +59,11 @@ def main(logger):
 
     # Let us add an argument parser here
     parser = argparse.ArgumentParser(description='{{cookiecutter.project}} command line arguments')
+    parser = aP.parsersAdd(parser)
     results = parser.parse_args()
+    resultsDict = aP.decodeParsers(results)
+
+    print(resultsDict)
 
     # First import all the modules, and run 
     # them

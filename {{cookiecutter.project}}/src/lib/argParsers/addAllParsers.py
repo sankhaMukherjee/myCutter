@@ -1,4 +1,4 @@
-from lib.argParsers import config
+from lib.argParsers import config as cf
 
 from logs import logDecorator as lD
 import json
@@ -29,6 +29,53 @@ def parsersAdd(logger, parser):
         the instance
     '''
 
-    parser = config.addaddConfigParsers(parser)
+    parser = cf.addConfigParsers(parser)
 
     return parser
+
+def updateArgs(logger, defaultDict, claDict):
+    '''[summary]
+    
+    [description]
+    
+    Parameters
+    ----------
+    logger : {[type]}
+        [description]
+    defaultDict : {[type]}
+        [description]
+    claDict : {[type]}
+        [description]
+    
+    Returns
+    -------
+    [type]
+        [description]
+    '''
+
+    return defaultDict
+
+@lD.log(logBase + '.decodeParsers')
+def decodeParsers(logger, args):
+    '''convert the parser namespace into a dict
+    
+    This takes the parsed arguments and converts the values
+    into a dictionary that can be used ...
+    
+    Parameters
+    ----------
+    logger : {logging.Logger}
+        The logger used for logging error information
+    parser : {[type]}
+        [description]
+    '''
+
+    allConfigs = {}
+
+    configCLA = {}
+    configCLA['logging'] = cf.decodeParser(args)
+
+    allConfigs['config'] = configCLA
+
+    return allConfigs
+

@@ -1,7 +1,7 @@
 from lib.argParsers import config as cf
 
 from logs import logDecorator as lD
-import json
+import json, copy
 
 config = json.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + '.lib.argParsers.addAllParsers'
@@ -52,6 +52,19 @@ def updateArgs(logger, defaultDict, claDict):
     [type]
         [description]
     '''
+
+    for d in defaultDict:
+        if d not in claDict:
+            continue
+
+        t = type(defaultDict[d])
+        if  any([t is m for m in [str, bool, int, float, complex]]):
+            defaultDict[d] = claDict[d]
+
+        if t is dict:
+            defaultDict[d] = updateArgs(defaultDict[d], claDict[d])
+
+        logger.error('Unable to process type: [{}] for [{}]'.format(t, d))
 
     return defaultDict
 

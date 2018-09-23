@@ -99,6 +99,6 @@ if __name__ == '__main__':
     logSpecs = aP.updateArgs(logSpecs, resultsDict['config']['logging']['specs'])
     logInit  = lD.logInit(logBase, logLevel, logSpecs)
     logLevel = resultsDict['config']['logging']['level']
-    main     = logInit(main, resultsDict)
+    main     = logInit(main)
 
-    main()
+    main(resultsDict)

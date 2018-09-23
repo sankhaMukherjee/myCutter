@@ -39,7 +39,16 @@ def main(logger, resultsDict):
         overwriting command line arguments as needed.
     '''
 
+    print('='*30)
+    print('Main function of module 1')
+    print('='*30)
+    print('We get a copy of the result dictionary over here ...')
+    pprint.pprint(resultsDict)
+
     doSomething()
 
+    print('Getting out of Module 1')
+    print('-'*30)
+    
     return
 

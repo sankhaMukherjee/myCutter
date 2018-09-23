@@ -49,21 +49,12 @@ def importModules(logger):
 
     return
 
-@lD.logInit(logBase, logLevel, logSpecs)
 def main(logger):
     '''main program
     
     This is the place where the entire program is going
     to be generated.
     '''
-
-    # Let us add an argument parser here
-    parser = argparse.ArgumentParser(description='{{cookiecutter.project}} command line arguments')
-    parser = aP.parsersAdd(parser)
-    results = parser.parse_args()
-    resultsDict = aP.decodeParsers(results)
-
-    print(resultsDict)
 
     # First import all the modules, and run 
     # them
@@ -92,4 +83,22 @@ def main(logger):
     return
 
 if __name__ == '__main__':
+
+    # Let us add an argument parser here
+    parser = argparse.ArgumentParser(description='{{cookiecutter.project}} command line arguments')
+    parser = aP.parsersAdd(parser)
+    results = parser.parse_args()
+    resultsDict = aP.decodeParsers(results)
+
+    # ---------------------------------------------------
+    # We need to explicitely define the logging here
+    # rather than as a decorator, bacause we have
+    # fundamentally changed the way in which logging 
+    # is done here
+    # ---------------------------------------------------
+    logSpecs = aP.updateArgs(logSpecs, resultsDict['config']['logging']['specs'])
+    logInit  = lD.logInit(logBase, logLevel, logSpecs)
+    logLevel = resultsDict['config']['logging']['level']
+    main     = logInit(main)
+
     main()

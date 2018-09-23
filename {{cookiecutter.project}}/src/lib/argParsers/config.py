@@ -31,9 +31,9 @@ def addConfigParsers(logger, parser):
         type=str, 
         choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'],
         help="change the logging level")
-    parser.add_argument("--logging_specs_file_todo", 
-        action="store_true",
-        help="allow file logging")
+    # parser.add_argument("--logging_specs_file_todo", 
+    #     action="store_true",
+    #     help="allow file logging")
     parser.add_argument("--logging_specs_file_logFolder", 
         type = str,
         help = "folder in which to log files")
@@ -79,7 +79,13 @@ def decodeParser(logger, args):
     '''
 
 
-    values = {}
+    values = {
+        'specs': {
+            'file': {},
+            'stdout': {},
+            'logstash' : {}
+        }
+    }
     
     try:
         if args.logging_level is not None:
@@ -87,12 +93,12 @@ def decodeParser(logger, args):
     except Exception as e:
         logger.error('Unable to decode the argument logging_level :{}'.format(
             e))
-    try:
-        if args.logging_specs_file_todo is not None:
-            values['specs']['file']['todo'] = args.logging_specs_file_todo
-    except Exception as e:
-        logger.error('Unable to decode the argument logging_specs_file_todo :{}'.format(
-            e))
+    # try:
+    #     if args.logging_specs_file_todo is not None:
+    #         values['specs']['file']['todo'] = args.logging_specs_file_todo
+    # except Exception as e:
+    #     logger.error('Unable to decode the argument logging_specs_file_todo :{}'.format(
+    #         e))
     try:
         if args.logging_specs_file_logFolder is not None:
             values['specs']['file']['logFolder'] = args.logging_specs_file_logFolder

@@ -97,8 +97,12 @@ if __name__ == '__main__':
     # is done here
     # ---------------------------------------------------
     logSpecs = aP.updateArgs(logSpecs, resultsDict['config']['logging']['specs'])
+    try:
+        logLevel = resultsDict['config']['logging']['level']
+    except Exception as e:
+        print('Logging level taking from the config file: {}'.format(logLevel))
+
     logInit  = lD.logInit(logBase, logLevel, logSpecs)
-    logLevel = resultsDict['config']['logging']['level']
     main     = logInit(main)
 
     main(resultsDict)

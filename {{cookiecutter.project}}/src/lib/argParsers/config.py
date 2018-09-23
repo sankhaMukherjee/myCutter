@@ -5,7 +5,7 @@ config = json.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + '.lib.argParsers.config'
 
 @lD.log(logBase + '.parsersAdd')
-def addConfigParsers(logger, parser):
+def addParsers(logger, parser):
     '''add argument parsers specific to the ``config/config.json`` file
     
     This function is kgoing to add argument parsers specific to the 
@@ -23,8 +23,9 @@ def addConfigParsers(logger, parser):
     
     Returns
     -------
-    [type]
-        [description]
+    argparse.ArgumentParser instance
+        The same parser argument to which new CLI arguments have been
+        appended
     '''
     
     parser.add_argument("--logging_level", 

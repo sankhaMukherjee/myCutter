@@ -1,5 +1,5 @@
 from logs import logDecorator as lD 
-import json
+import json, pprint
 
 config = json.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + '.modules.module1.module1'
@@ -49,6 +49,6 @@ def main(logger, resultsDict):
 
     print('Getting out of Module 1')
     print('-'*30)
-    
+
     return
 

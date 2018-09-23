@@ -29,7 +29,7 @@ def parsersAdd(logger, parser):
         the instance
     '''
 
-    parser = cf.addConfigParsers(parser)
+    parser = cf.addParsers(parser)
 
     return parser
 

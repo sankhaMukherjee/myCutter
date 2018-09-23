@@ -11,7 +11,7 @@ logLevel = config['logging']['level']
 logSpecs = config['logging']['specs']
 
 @lD.log(logBase + '.importModules')
-def importModules(logger):
+def importModules(logger, resultsDict):
     '''import and execute required modules
     
     This function is used for importing all the 
@@ -43,13 +43,13 @@ def importModules(logger):
                 name, path)
             module = util.module_from_spec(module_spec)
             module_spec.loader.exec_module(module)
-            module.main()
+            module.main(resultsDict)
         except Exception as e:
             print('Unable to load module: {}->{}\n{}'.format(name, path, str(e)))
 
     return
 
-def main(logger):
+def main(logger, resultsDict):
     '''main program
     
     This is the place where the entire program is going
@@ -59,7 +59,7 @@ def main(logger):
     # First import all the modules, and run 
     # them
     # ------------------------------------
-    importModules()
+    importModules(resultsDict)
 
     # Lets just create a simple testing 
     # for other functions to follow
@@ -99,6 +99,6 @@ if __name__ == '__main__':
     logSpecs = aP.updateArgs(logSpecs, resultsDict['config']['logging']['specs'])
     logInit  = lD.logInit(logBase, logLevel, logSpecs)
     logLevel = resultsDict['config']['logging']['level']
-    main     = logInit(main)
+    main     = logInit(main, resultsDict)
 
     main()

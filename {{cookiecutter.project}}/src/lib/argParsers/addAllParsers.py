@@ -65,7 +65,11 @@ def updateArgs(logger, defaultDict, claDict):
             continue
 
         t = type(defaultDict[d])
-        if  any([t is m for m in [str, bool, int, float, complex]]):
+        if t is bool:
+            defaultDict[d] = (claDict[d] or defaultDict[d])
+            continue
+
+        if  any([t is m for m in [str, int, float, complex]]):
             defaultDict[d] = claDict[d]
             continue
 

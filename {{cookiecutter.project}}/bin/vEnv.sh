@@ -33,6 +33,10 @@ else
 
     # Logging into logstash
     pip3 install python-logstash
+
+    # networkX for graphics
+    pip3 install networkx
+    pip3 install pydot # dot layout
     
     # Utilities
     pip3 install ipython

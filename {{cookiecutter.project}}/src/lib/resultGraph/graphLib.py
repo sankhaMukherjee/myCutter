@@ -23,8 +23,8 @@ def generateGraph(logger):
     
     Returns
     -------
-    [type]
-        [description]
+    networkX.Graph object
+        Graph of which object is created when
     '''
     
     try:
@@ -69,18 +69,17 @@ def generateGraph(logger):
 
 @lD.log(logBase + '.plotGraph')
 def plotGraph(logger, graph, fileName=None):
-    '''[summary]
-    
-    [description]
+    '''plot the graph
     
     Parameters
     ----------
     logger : {logging.logger}
         logging element 
-    graph : {[type]}
-        [description]
-    fileName : {[type]}, optional
-        [description] (the default is None, which [default_description])
+    graph : {networkX.Graph object}
+        The graph that needs to be plotted
+    fileName : {str}, optional
+        name of the file where to save the graph (the default is None, which
+        results in no graph being generated)
     '''
 
     try:
@@ -108,23 +107,21 @@ def plotGraph(logger, graph, fileName=None):
 
 @lD.log(logBase + '.generateSubGraph')
 def generateSubGraph(logger, graph, keyNode):
-    '''[summary]
-    
-    [description]
+    '''generate a subgraph that contains all prior nodes
     
     Parameters
     ----------
     logger : {logging.logger}
         logging element 
-    graph : {[type]}
+    graph : {networkX.Graph object}
         [description]
-    keyNode : {[type]}
-        [description]
+    keyNode : {str}
+        Name of the node whose ancestors need to be geenrated.
     
     Returns
     -------
-    [type]
-        [description]
+    networkX.Graph object
+        graph containing the particular node and its ancistors.
     '''
 
     try:
@@ -244,7 +241,7 @@ def uploadGraph(logger, graph, dbName=None):
 
     try:
 
-        nodes, edges graphToSerialized(graph)
+        nodes, edges = graphToSerialized(graph)
 
         queryNodes = '''insert into graph.nodes values %s'''
         queryEdges = '''insert into graph.edges values %s'''

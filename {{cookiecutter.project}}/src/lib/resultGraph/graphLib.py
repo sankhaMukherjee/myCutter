@@ -243,8 +243,8 @@ def uploadGraph(logger, graph, dbName=None):
 
         nodes, edges = graphToSerialized(graph)
 
-        queryNodes = '''insert into graph.nodes values %s'''
-        queryEdges = '''insert into graph.edges values %s'''
+        queryNodes = '''insert into graphs.nodes values %s'''
+        queryEdges = '''insert into graphs.edges values %s'''
 
         pgIO.commitDataList(queryNodes, nodes, dbName=dbName)
         pgIO.commitDataList(queryEdges, edges, dbName=dbName)

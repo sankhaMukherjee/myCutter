@@ -57,7 +57,7 @@ else
     pip3 install --upgrade keras
 
     # database stuff
-    pip3 install psycopg2
+    pip3 install psycopg2-binary
 
     # Charting libraries
     pip3 install matplotlib

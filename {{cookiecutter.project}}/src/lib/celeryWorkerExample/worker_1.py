@@ -22,17 +22,23 @@ def add(logger, a, b):
     
     Parameters
     ----------
-    logger : {[type]}
-        [description]
-    a : {[type]}
-        [description]
-    b : {[type]}
-        [description]
+    logger : {logging.logger}
+        The logging instance that will log information about the execution.
+        Rememebr that this is a significantly different logger than the
+        one that will finally run the system. In a distributed system it
+        is possible that multiple loggers will interact differently with
+        different loggers and thus colating the different logs might be a
+        significant challenge. 
+    a : {any type that supports an addition}
+        The first element of the binary addition operation
+    b : {any type that supports addition}
+        The second element of the binary addition operation
     
     Returns
     -------
-    [type]
-        [description]
+    type(a+b)
+        Result of the addition of the two input values. In case of an error, this
+        is going to return a ``None``
     '''
 
     try:

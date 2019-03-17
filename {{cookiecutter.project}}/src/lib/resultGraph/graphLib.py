@@ -1,12 +1,12 @@
 from logs import logDecorator as lD
-import json, os
+import jsonref, os
 import matplotlib.pyplot as plt # This comes before networkx
 import networkx as nx
 from networkx.drawing.nx_pydot import graphviz_layout
 from datetime import datetime as dt
 from lib.databaseIO import pgIO
 
-config = json.load(open('../config/config.json'))
+config = jsonref.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + '.lib.resultGraph.graphLib'
 
 @lD.log(logBase + '.generateGraph')
@@ -35,7 +35,7 @@ def generateGraph(logger):
         files  = [f for f in os.listdir(folder) if f.endswith('.json')]
 
         for f in files:
-            data = json.load(open(os.path.join(folder, f)))
+            data = jsonref.load(open(os.path.join(folder, f)))
             inp  = list(data['inputs'].keys())
             out  = list(data['outputs'].keys())
             f = f.replace('.json', '')
@@ -45,7 +45,7 @@ def generateGraph(logger):
             # Add the incoming edges
             for n in inp:
                 if n not in graph.nodes:
-                    summary = json.dumps(data['inputs'][n])
+                    summary = jsonref.dumps(data['inputs'][n])
                     graph.add_node( n, 
                         type    = data['inputs'][n]['type'],
                         summary = summary)
@@ -55,7 +55,7 @@ def generateGraph(logger):
             # Add the outgoing edges
             for n in out:
                 if n not in graph.nodes:
-                    summary = json.dumps(data['outputs'][n])
+                    summary = jsonref.dumps(data['outputs'][n])
                     graph.add_node( n, 
                         type    = data['outputs'][n]['type'],
                         summary = summary)

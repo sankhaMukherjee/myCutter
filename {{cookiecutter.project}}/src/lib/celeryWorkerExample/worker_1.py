@@ -1,9 +1,9 @@
 from logs import logDecorator as lD
-import json, psycopg2
+import jsonref, psycopg2
 
 from lib.celery.App import app
 
-config = json.load(open('../config/config.json'))
+config = jsonref.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + 'lib.celeryWorkerExample.worker_1'
 
 @app.task

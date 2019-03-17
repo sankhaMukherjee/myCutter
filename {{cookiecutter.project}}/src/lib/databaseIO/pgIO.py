@@ -1,8 +1,8 @@
 from logs import logDecorator as lD
-import json, psycopg2
+import jsonref, psycopg2
 from psycopg2.extras import execute_values
 
-config = json.load(open('../config/config.json'))
+config = jsonref.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + '.databaseIO.pgIO'
 
 @lD.log(logBase + '.getAllData')
@@ -39,7 +39,7 @@ def getAllData(logger, query, values=None, dbName=None):
     vals = None
     
     try:
-        db = json.load(open('../config/db.json'))
+        db = jsonref.load(open('../config/db.json'))
 
         # Check whether a dbName is available
         if (dbName is None) and ('defaultDB' in db):
@@ -115,7 +115,7 @@ def getDataIterator(logger, query, values=None, chunks=100, dbName=None):
     '''
 
     try:
-        db = json.load(open('../config/db.json'))
+        db = jsonref.load(open('../config/db.json'))
 
         # Check whether a dbName is available
         if (dbName is None) and ('defaultDB' in db):
@@ -189,7 +189,7 @@ def getSingleDataIterator(logger, query, values=None, dbName=None):
     '''
 
     try:
-        db = json.load(open('../config/db.json'))
+        db = jsonref.load(open('../config/db.json'))
 
         # Check whether a dbName is available
         if (dbName is None) and ('defaultDB' in db):
@@ -270,7 +270,7 @@ def commitData(logger, query, values=None, dbName=None):
     vals = None
     
     try:
-        db = json.load(open('../config/db.json'))
+        db = jsonref.load(open('../config/db.json'))
 
         # Check whether a dbName is available
         if (dbName is None) and ('defaultDB' in db):
@@ -346,7 +346,7 @@ def commitDataList(logger, query, values, dbName=None):
     vals = None
     
     try:
-        db = json.load(open('../config/db.json'))
+        db = jsonref.load(open('../config/db.json'))
 
         # Check whether a dbName is available
         if (dbName is None) and ('defaultDB' in db):

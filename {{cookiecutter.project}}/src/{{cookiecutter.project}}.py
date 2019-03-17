@@ -1,11 +1,11 @@
-import json, argparse
+import jsonref, argparse
 
 from importlib      import util
 from logs           import logDecorator  as lD
 from lib.testLib    import simpleLib     as sL
 from lib.argParsers import addAllParsers as aP
 
-config   = json.load(open('../config/config.json'))
+config   = jsonref.load(open('../config/config.json'))
 logBase  = config['logging']['logBase']
 logLevel = config['logging']['level']
 logSpecs = config['logging']['specs']
@@ -24,7 +24,7 @@ def importModules(logger, resultsDict):
     logger : {logging.Logger}
         logger module for logging information
     '''
-    modules = json.load(open('../config/modules.json'))
+    modules = jsonref.load(open('../config/modules.json'))
 
     for m in modules:
 

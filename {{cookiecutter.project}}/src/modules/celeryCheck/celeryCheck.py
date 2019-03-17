@@ -1,8 +1,8 @@
 from logs import logDecorator as lD 
-import json, pprint
+import jsonref, pprint
 from lib.celeryWorkerExample import worker_1
 
-config = json.load(open('../config/config.json'))
+config = jsonref.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + '.modules.celeryCheck.celeryCheck'
 
 

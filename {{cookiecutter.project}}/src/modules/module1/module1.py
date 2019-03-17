@@ -1,7 +1,7 @@
 from logs import logDecorator as lD 
-import json, pprint
+import jsonref, pprint
 
-config = json.load(open('../config/config.json'))
+config = jsonref.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + '.modules.module1.module1'
 
 

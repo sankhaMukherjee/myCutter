@@ -1,7 +1,7 @@
 from logs import logDecorator as lD
-import json
+import jsonref
 
-config = json.load(open('../config/config.json'))
+config = jsonref.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + '.lib.testLib.simpleLib'
 
 @lD.log(logBase + '.simpleTestFunction')

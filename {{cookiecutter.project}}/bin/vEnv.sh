@@ -44,6 +44,7 @@ else
     # Utilities
     pip3 install ipython
     pip3 install tqdm
+    pip3 install jsonref
 
     # scientific libraries
     pip3 install numpy

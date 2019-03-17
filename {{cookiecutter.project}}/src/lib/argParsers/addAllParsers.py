@@ -1,9 +1,9 @@
 from lib.argParsers import config as cf
 
 from logs import logDecorator as lD
-import json, copy
+import jsonref, copy
 
-config = json.load(open('../config/config.json'))
+config = jsonref.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + '.lib.argParsers.addAllParsers'
 
 @lD.log(logBase + '.parsersAdd')

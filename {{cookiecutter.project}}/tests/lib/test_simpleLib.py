@@ -1,6 +1,6 @@
 from lib.testLib import simpleLib as sL
-import json, logging, pytest
-config = json.load(open('../config/config.json'))
+import jsonref, logging, pytest
+config = jsonref.load(open('../config/config.json'))
 
 def test_simpleTest():
     logging.getLogger(config['logging']['logBase'])

@@ -1,5 +1,5 @@
 from logs import logDecorator as lD
-import json, psycopg2
+import jsonref, psycopg2
 from celery import Celery
 import logging
 
@@ -8,11 +8,11 @@ from datetime import datetime as dt
 from celery.signals import after_setup_logger
 
 
-config   = json.load(open('../config/config.json'))
+config   = jsonref.load(open('../config/config.json'))
 logBase  = config['logging']['logBase']
 logLevel = config['logging']['level']
 logSpecs = config['logging']['specs']
-cConfig  = json.load(open('../config/celery.json'))
+cConfig  = jsonref.load(open('../config/celery.json'))
 
 logger = logging.getLogger(logBase)
 

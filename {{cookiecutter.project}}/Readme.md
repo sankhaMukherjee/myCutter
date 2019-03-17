@@ -12,7 +12,7 @@ You will need to have a valid Python installation on your system. This has been 
 
 ## Installing
 
-The folloiwing installations are for *nix-like systems. These have been tried on macOS Sierra (Version 10.12.6) before. 
+The folloiwing installations are for \*nix-like systems. These have been tried on macOS Sierra (Version 10.12.6) before. 
 
 1. Clone the program to your computer. 
 2. type `make firstRun`. This should do the following

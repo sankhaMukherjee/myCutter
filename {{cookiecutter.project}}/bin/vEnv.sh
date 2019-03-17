@@ -11,7 +11,7 @@
 # if you wish to use this environment in 
 # AWS
 #----------------------------------------------
-python3 -m venv env
+python3.6 -m venv env
 
 # this is for bash. Activate
 # it differently for different shells
@@ -37,6 +37,9 @@ else
     # networkX for graphics
     pip3 install networkx
     pip3 install pydot # dot layout
+
+    # Celery and redis
+    pip3 install celery[redis]
     
     # Utilities
     pip3 install ipython

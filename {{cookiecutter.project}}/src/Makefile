@@ -4,6 +4,9 @@ grantPermissions:
 run:
 	../bin/run.sh
 
+runCelery:
+	celery -A lib.celery.App worker -l info
+
 runA:
 	../bin/run.sh -a
 
@@ -23,6 +26,12 @@ checkLog:
 
 checkTime:
 	../bin/checkTime.sh
+
+checkCeleryLog:
+	../bin/checkCeleryLog.sh
+
+checkCeleryTime:
+	../bin/checkCeleryTime.sh
 
 test:
 	python3 -m pytest ../tests

@@ -240,9 +240,9 @@ def commitData(logger, query, values=None, dbName=None):
     '''query data from the database
     
     Query the data over here. If there is a problem with
-    the data, it is going to return the value of None, and
+    the data, it is going to return the value of ``None``, and
     log the error. Your program needs to check whether 
-    there was an error with the query by checking for a None
+    there was an error with the query by checking for a ``None``
     return value
     
     Parameters
@@ -261,13 +261,13 @@ def commitData(logger, query, values=None, dbName=None):
     
     Returns
     -------
-    list or None
-        A list of tuples containing the values is returned. In case
-        there is an error, the error will be logged, and a None will
-        be return
+    True or None
+        On successful completion, a ``True`` is returned. In case
+        there is an error, the error will be logged, and a ``None`` will
+        be returnd
     '''
 
-    vals = None
+    vals = True
     
     try:
         db = jsonref.load(open('../config/db.json'))
@@ -286,7 +286,7 @@ def commitData(logger, query, values=None, dbName=None):
     except Exception as e:
         logger.error('Unable to connect to the database')
         logger.error(str(e))
-        return
+        return None
 
     try:
 
@@ -298,6 +298,7 @@ def commitData(logger, query, values=None, dbName=None):
     except Exception as e:
         logger.error('Unable to obtain data from the database for:\n query: {}\nvalues'.format(query, values))
         logger.error(str(e))
+        vals = None
 
 
     try:
@@ -318,7 +319,7 @@ def commitDataList(logger, query, values, dbName=None):
     Query the data over here. If there is a problem with
     the data, it is going to return the value of None, and
     log the error. Your program needs to check whether 
-    there was an error with the query by checking for a None
+    there was an error with the query by checking for a ``None``
     return value
     
     Parameters
@@ -337,14 +338,14 @@ def commitDataList(logger, query, values, dbName=None):
     
     Returns
     -------
-    list or None
-        A list of tuples containing the values is returned. In case
-        there is an error, the error will be logged, and a None will
-        be return
+    True or None
+        A successful completion of this function returns a ``True``. 
+        In case there is an error, the error will be logged, and a ``None`` will
+        be returned
     '''
 
-    vals = None
-    
+    val = True
+
     try:
         db = jsonref.load(open('../config/db.json'))
 
@@ -362,16 +363,15 @@ def commitDataList(logger, query, values, dbName=None):
     except Exception as e:
         logger.error('Unable to connect to the database')
         logger.error(str(e))
-        return
+        return None
 
     try:
         query = cur.mogrify(query)
         execute_values(cur, query, values)
-
     except Exception as e:
-        logger.error('Unable to obtain data from the database for:\n query: {}\nvalues'.format(query, values))
+        logger.error('Unable to execute query for:\n query: {}\nvalues'.format(query, values))
         logger.error(str(e))
-
+        val = None
 
     try:
         conn.commit()
@@ -380,6 +380,6 @@ def commitDataList(logger, query, values, dbName=None):
     except Exception as e:
         logger.error('Unable to disconnect to the database')
         logger.error(str(e))
-        return 
+        return None
 
-    return vals
+    return val

@@ -26,15 +26,43 @@ def importModules(logger, resultsDict):
     '''
     modules = jsonref.load(open('../config/modules.json'))
 
+    # update modules in the right order. Also get rid of the frivilous
+    # modules
+    if resultsDict['modules'] is not None:
+        tempModules = []
+        for m in resultsDict['modules']:
+            toAdd = [n for n in modules if n['moduleName'] == m][0]
+            tempModules.append( toAdd )
+
+        modules = tempModules
+
     for m in modules:
 
-        try:
-            if not m['execute']:
-                logger.info('Module {} is being skipped'.format(m['moduleName']))
-                continue
-        except Exception as e:
-            logger.error('Unable to check whether ')
+        if (resultsDict['modules'] is None):
 
+            # skip based upon modules.json
+            logger.info('Obtaining module information from modules.json')
+            try:
+                if not m['execute']:
+                    logger.info('Module {} is being skipped'.format(m['moduleName']))
+                    continue
+            except Exception as e:
+                logger.error(f'Unable to check whether module the module should be skipped: {e}')
+                logger.error(f'this module is being skipped')
+                continue
+
+        else:
+
+            # skip based upon CLI
+            try:
+                if m['moduleName'] not in resultsDict['modules']:
+                    logger.info(f'{m} not present within the list of CLI modules. Module is skipped')
+                    continue
+            except Exception as e:
+                logger.error(f'Unable to determine whether this module should be skipped: {e}.\n Module is being skipped.')
+                continue
+
+                
         try:
             name, path = m['moduleName'], m['path']
             logger.info('Module {} is being executed'.format( name ))
@@ -86,9 +114,26 @@ if __name__ == '__main__':
 
     # Let us add an argument parser here
     parser = argparse.ArgumentParser(description='{{cookiecutter.project}} command line arguments')
+    
+    # Add the modules here
+    modules = jsonref.load(open('../config/modules.json'))
+    modules = [m['moduleName'] for m in modules]
+    parser.add_argument('-m', '--module', action='append',
+        type = str,
+        choices = modules,
+        help = '''Add modules to run over here. Multiple modules can be run
+        simply by adding multiple strings over here. Make sure that the 
+        available choices are reflected in the choices section''')
+
     parser = aP.parsersAdd(parser)
     results = parser.parse_args()
     resultsDict = aP.decodeParsers(results)
+
+    if results.module is not None:
+        resultsDict['modules'] = results.module
+    else:
+        resultsDict['modules'] = None
+        
 
     # ---------------------------------------------------
     # We need to explicitely define the logging here

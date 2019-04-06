@@ -30,7 +30,7 @@ Please send in a pull request.
 
 ## Authors
 
-{{cookiecutter.full_name}} - Initial work ({{cookiecutter.year}})
+Sankha S. Mukherjee - Initial work (October, 2017)
 
 ## License
 
@@ -41,4 +41,7 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
  - Python and the great cookiecutter templates
  - Some inspiration from the already available DataScience template
 
- 
+## Updates
+
+ - 2019-04-06: updated the `pgIO.commitData` functions to return `None` on failure
+ - 2019-04-06: `argparse` updated. Now modules can be specified with `-m` or `--modules`

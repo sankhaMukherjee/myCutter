@@ -11,7 +11,7 @@
 # if you wish to use this environment in 
 # AWS
 #----------------------------------------------
-python3.6 -m venv env
+python3 -m venv env
 
 # this is for bash. Activate
 # it differently for different shells

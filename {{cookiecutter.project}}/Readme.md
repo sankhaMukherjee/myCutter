@@ -12,18 +12,23 @@ You will need to have a valid Python installation on your system. This has been 
 
 ## Installing
 
-The folloiwing installations are for \*nix-like systems. These have been tried on macOS Sierra (Version 10.12.6) before. 
+The folloiwing installations are for \*nix-like systems. This is currently tested in the following system: `Ubuntu 18.10`. 
 
-1. Clone the program to your computer. 
-2. type `make firstRun`. This should do the following
-    2.1. generate a virtual environment in folder `env`
-    2.2. install a number of packages
-    2.3. generate a new `requirements.txt` file
-    2.4. generate an initial git repository
-3. change to the `src` folder
-4. run the command `make run`. This should run the small test program
-5. Generate your documentation folder by running `make doc`. 
-6. Check whether all the tests pass with the command `make test`. This uses py.test for running tests. 
+For installation, first close this repository, and generate the virtual environment required for running the programs. 
+
+This project framework uses [venv](https://docs.python.org/3/library/venv.html) for maintaining virtual environments. Please familiarize yourself with [venv](https://docs.python.org/3/library/venv.html) before working with this repository. You do not want to contaminate your system python while working with this repository.
+
+A convenient script for doing this is present in the file [`bin/vEnv.sh`](../blob/master/bin/vEnv.sh). This is automatically do the following things:
+
+1. Generate a virtual environment
+2. activate this environment
+3. install all required libraries
+4. deactivate the virtual environment and return to the prompt. 
+
+At this point you are ready to run programs. However, remember that you will need to activate the virtual environment any time you use the program.
+
+For activating your virtual environment, type `source env/bin/activate` in the project folder in [bash](https://www.gnu.org/software/bash/) or `source env/bin/activate.fish` if you are using the [fish](https://fishshell.com/) shell.
+For deactivating, just type deactivate in your shell
 
 ## Deployment
 

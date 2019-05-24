@@ -66,6 +66,11 @@ else
 
     pip3 freeze > requirements.txt
 
+    # Generate the documentation
+    cd src 
+    make doc
+    cd ..
+
 fi
 
 deactivate

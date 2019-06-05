@@ -53,6 +53,7 @@ doc:
 	@rm -rf ../docs
 	@mkdir ../docs
 	@sphinx-apidoc -F -o ../docs .
+	@echo "autoclass_content = 'both'" >> ../docs/conf.py
 	@sed "s/^extensions.*/& 'sphinx.ext.napoleon',/"        ../docs/conf.py   > ../docs/conf2.py
 	@sed "s/^# import/import/"                              ../docs/conf2.py  > ../docs/conf3.py
 	@sed "s/^# sys.path./sys.path./"                        ../docs/conf3.py  > ../docs/conf4.py

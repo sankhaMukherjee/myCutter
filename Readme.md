@@ -43,5 +43,6 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 
 ## Updates
 
- - 2019-04-06: updated the `pgIO.commitData` functions to return `None` on failure
+ - 2019-06-06: Updated the `src\Makefile` so that the documentation included the `__init__` documentation for the classes
+ - 2019-04-06: Updated the `pgIO.commitData` functions to return `None` on failure
  - 2019-04-06: `argparse` updated. Now modules can be specified with `-m` or `--modules`

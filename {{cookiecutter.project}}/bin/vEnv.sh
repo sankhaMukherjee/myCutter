@@ -42,7 +42,8 @@ else
     pip3 install celery[redis]
     
     # Utilities
-    pip3 install ipython
+    pip3 install jupyter
+    pip3 install jupyterlab
     pip3 install tqdm
     pip3 install jsonref
 
@@ -62,7 +63,6 @@ else
     # Charting libraries
     pip3 install matplotlib
     pip3 install seaborn
-    pip3 install folium
 
     pip3 freeze > requirements.txt
 

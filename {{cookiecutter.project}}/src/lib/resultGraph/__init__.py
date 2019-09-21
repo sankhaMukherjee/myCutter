@@ -56,7 +56,7 @@ these objects are associated with two mandatory fields: ``type`` and
 argument associated with it.  
 
 
-Example ``type``s and their corresponding ``location`` argument:
+Example types and their corresponding location argument:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
   - "file-file"         : "<string containing the location>", 

@@ -3,7 +3,13 @@
         "moduleName" : "module1",
         "path"       : "modules/module1/module1.py",
         "execute"    : true,
-        "description": "",
+        "description": "a simple example module",
+        "owner"      : ""
+    }, {
+        "moduleName" : "versionedModule",
+        "path"       : "modules/versionedModule/versionedModule.py",
+        "execute"    : false,
+        "description": "a module that tests a versioned library",
         "owner"      : ""
     }, {
         "moduleName" : "celeryCheck",

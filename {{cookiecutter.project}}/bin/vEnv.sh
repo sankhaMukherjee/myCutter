@@ -54,9 +54,8 @@ else
 
     # ML libraries
     pip3 install sklearn
-    pip3 install --upgrade tensorflow
-    pip3 install --upgrade keras
-
+    # pip3 install --upgrade tensorflow-gpu
+    
     # database stuff
     pip3 install psycopg2-binary
 

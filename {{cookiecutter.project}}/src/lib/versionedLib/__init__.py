@@ -20,7 +20,13 @@ using the major and minor version numbers. An example structure is shown below:
     |       |--lib2.py
     |       +--lib3.py
 
+for the libracy ``lib = 'lib1.py'`` for version ``version='1_00'``  it is posssible to 
+use the path ``f'lib/lin1/versions/ver_{version}/{lib}.py'`` to dynamically generate
+and load the required library. This is what is done within the function ``getLib()``
+which, given a particular version and library, will load and return the right 
+library. In fact, it is possible to load multiple versions of the library, and
+this will allow one version to be compared with another efficiently.
 
-
+You are encouraged to maintain this structure for consistency in all your projects.
 
 '''

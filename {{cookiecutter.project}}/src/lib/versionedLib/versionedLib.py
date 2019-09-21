@@ -11,15 +11,19 @@ def getLib(version, libName):
     
     Parameters
     ----------
-    version : [type]
-        [description]
-    libName : [type]
-        [description]
+    version : str
+        The version number of the library. 
+    libName : str
+        The name of the library that you wish to use within this
+        library
     
     Returns
     -------
-    [type]
-        [description]
+    module
+        The module that is dynamically loaded given the name and the
+        verison of the library. In case this library cannot be found,
+        this is going to raise an exception
+
     '''
 
     

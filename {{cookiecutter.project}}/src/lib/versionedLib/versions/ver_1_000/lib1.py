@@ -6,12 +6,12 @@ logBase = config['logging']['logBase'] + '.lib.versionedLib.versionedLib.ver_1_0
 
 @lD.log( logBase + '.someVersionedLib' )
 def someVersionedLib(logger):
-    '''[summary]
+    '''simple function that just prints a line
     
     Parameters
     ----------
-    logger : [type]
-        [description]
+    logger : logging.logger instance
+            logging element
     '''
 
     print('We are within a function of a  versioned library: version 1.000')

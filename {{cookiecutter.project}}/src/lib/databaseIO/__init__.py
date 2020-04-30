@@ -12,5 +12,6 @@ Available Database Libraries:
 -----------------------------
 
  - Postgres: ``pgIO``
+ - SQLite: ``sqLiteIO``
 
 '''

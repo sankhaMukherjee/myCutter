@@ -18,11 +18,11 @@ cookiecutter https://github.com/sankhaMukherjee/myCutter
 
 ## Prerequisites
 
-You will need to have a valid Python installation on your system. This has been tested with Python 3.6. It does not assume a particulay version of python, however, it makes no assertions of proper working, either on this version of Python, or on another. 
+You will need to have a valid Python installation on your system. This has been tested with Python 3.6. It does not assume a particulay version of python, however, it makes no assertions of proper working, either on this version of Python, or on another. Note that many of the supplied libraries use f-strings that is only available in Python version 3.6 onward.
 
 ## Built For
 
- - Python 3.6
+ - Python 3.7
 
 ## Contributing
 

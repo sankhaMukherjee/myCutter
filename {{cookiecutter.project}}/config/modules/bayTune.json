@@ -1,0 +1,33 @@
+{
+    "inputs"  : {},
+    "outputs" : {},
+    "params"  : {
+
+        "outFigure": "../results/bayesOpt.png",
+
+        "numIters": 100,
+
+        "hyperParams":{
+
+            "shuffle": {
+                "type": "bool",
+                "default": true
+            },
+            "alpha": {
+                "type": "float",
+                "values": [0.0001, 1],
+                "default": 0.0001
+            },
+            "tol": {
+                "type": "float",
+                "values": [ 1e-5, 1],
+                "default": 1e-5
+            },
+            "max_iter": {
+                "type": "int",
+                "values": [ 100, 5000],
+                "default": 1000
+            }
+        }
+    }
+}

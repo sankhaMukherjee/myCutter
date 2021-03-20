@@ -14,10 +14,6 @@ from btb.tuning.tuners import GPTuner
 
 import matplotlib.pyplot as plt
 
-# Note that this example is taken (with slight modification) from one
-# of the examples provided by bayTune here:
-# https://github.com/MLBazaar/BTB/blob/master/tutorials/01_Tuning.ipynb
-
 config = jsonref.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + '.modules.bayTune.utils.utils'
 
@@ -62,11 +58,35 @@ def createDataSet(logger):
 
 @lD.log( logBase + '.optimize' )
 def optimize(logger):
+    '''Simple optimization example
+
+    A simple example of how to optimize hyperparameters of a model. The optimizer
+    will propose different parameters depending upon previous runs. Based upon
+    that, you will be able to organize your training process in a meaningful 
+    manner. 
+
+    Note that this example is taken (with slight modification) from one
+    of the examples provided by bayTune here:
+    https://github.com/MLBazaar/BTB/blob/master/tutorials/01_Tuning.ipynb
+
+    Parameters
+    ----------
+    logger : {logging.Logger}
+        The logger used for logging error information
+
+
+    Returns
+    -------
+    dict
+        This returns the best parameters for which the testing score
+        was obtained. Not that this is not cross-validated, and thus
+        there is a lot of room for improvement.
+    '''
 
 
     try:
         # Turn off warnings if it gets annoying ...
-        # warnings.filterwarnings('ignore')
+        warnings.filterwarnings('ignore')
 
         ##########################################################
         # Generate the dataset
@@ -109,6 +129,10 @@ def optimize(logger):
             
         print('Best score obtained: ', best_score)
         print('Best parameters: ', best_params)
+
+        ##########################################################
+        # Plot best parameters
+        ##########################################################
 
         plt.plot(np.arange(configM['numIters']), allScores, '+', mfc='None', mec='black')
         plt.plot( [best_iter], [best_score], 'o', ms=10, mfc='None', mec='red' )

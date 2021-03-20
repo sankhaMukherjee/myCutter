@@ -12,13 +12,13 @@ You will need to have a valid Python installation on your system. This has been 
 
 ## Installing
 
-The folloiwing installations are for \*nix-like systems. This is currently tested in the following system: `Ubuntu 18.10`. 
+The folloiwing installations are for \*nix-like systems. 
 
 For installation, first close this repository, and generate the virtual environment required for running the programs. 
 
 This project framework uses [venv](https://docs.python.org/3/library/venv.html) for maintaining virtual environments. Please familiarize yourself with [venv](https://docs.python.org/3/library/venv.html) before working with this repository. You do not want to contaminate your system python while working with this repository.
 
-A convenient script for doing this is present in the file [`bin/vEnv.sh`](../blob/master/bin/vEnv.sh). This is automatically do the following things:
+A convenient script for doing this is present in the file [`bin/vEnv.sh`](../master/bin/vEnv.sh). This is automatically do the following things:
 
 1. Generate a virtual environment
 2. activate this environment

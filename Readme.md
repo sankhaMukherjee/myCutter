@@ -52,8 +52,8 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
         - New file: `src\modules\bayTune\utils\utils.py` -> file where the actual code is present
         - New file: `config\modules\bayTune.json` -> Example configuration settings for Bayesian optimization
     - Update file: `config\config.json` -> inclide the `bayTune` module
-    - Update file: `\bin\vEnv.sh` -> changed `sklearn` to `scikit-learn`, added the `baytune` library by default
-    - Update file: `cookiecutter.json` -> Updated default year information
+    - [Done] Update file: `\bin\vEnv.sh` -> changed `sklearn` to `scikit-learn`, added the `baytune` library by default
+    - [Done] Update file: `cookiecutter.json` -> Updated default year information
     - [Done] Update file: `Readme.md` -> change the location of the `bin\vEnv.sh` file
  - 2019-06-06: Updated the `src\Makefile` so that the documentation included the `__init__` documentation for the classes
  - 2019-04-06: Updated the `pgIO.commitData` functions to return `None` on failure

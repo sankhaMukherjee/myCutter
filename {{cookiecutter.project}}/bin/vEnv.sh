@@ -53,7 +53,8 @@ else
     pip3 install pandas
 
     # ML libraries
-    pip3 install sklearn
+    pip3 install -U scikit-learn
+    pip3 install baytune
     # pip3 install --upgrade tensorflow-gpu
     
     # database stuff
